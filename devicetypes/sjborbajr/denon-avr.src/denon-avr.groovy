@@ -36,20 +36,16 @@ metadata {
 		command "sMusic"
 		command "sPure"
 		command "sGame"
-
-}
-
-preferences {
+    }
+  preferences {
     input("destIp", "text", title: "IP", description: "The device IP")
     input("destPort", "number", title: "Port", description: "The port you wish to connect", defaultValue: 80)
 	input(title: "Denon AVR version: ${getVersionTxt()}" ,description: null, type : "paragraph")
-}
-
-    simulator {
-        // TODO-: define status and reply messages here
-    }
-
-    //tiles {
+  }
+  simulator {
+      // TODO-: define status and reply messages here
+  }
+  //tiles {
 	tiles(scale: 2) {
 		multiAttributeTile(name:"multiAVR", type: "generic", width: 6, height: 4) {
            tileAttribute("device.status", key: "PRIMARY_CONTROL") { 	            
@@ -67,38 +63,38 @@ preferences {
 		standardTile("input1", "device.mp", width: 2, height: 2, decoration: "flat"){
         	state "OFF", label: 'Blu-ray', action: "mp", icon:"st.Electronics.electronics9", backgroundColor: "#FFFFFF",nextState:"ON"   
             state "ON", label: 'Blu-ray', action: "mp", icon:"st.Electronics.electronics9", backgroundColor: "#53a7c0", nextState:"OFF"              
-			}
+	      }
         standardTile("input2", "device.cbl", width: 2, height: 2, decoration: "flat"){     
             state "OFF", label: 'Xfinity', action: "cbl", icon:"st.Electronics.electronics3", backgroundColor: "#FFFFFF", nextState:"ON"
             state "ON", label: 'Xfinity', action: "cbl", icon:"st.Electronics.electronics3" , backgroundColor: "#53a7c0", nextState:"OFF"        
-            }
+          }
         standardTile("input3", "device.tv", width: 2, height: 2, decoration: "flat"){
         	 state "OFF", label: 'TV', action: "tv", icon:"st.Electronics.electronics18", backgroundColor:"#FFFFFF",nextState:"ON" 
              state "ON", label: 'TV', action: "tv", icon:"st.Electronics.electronics18", backgroundColor: "#53a7c0", nextState:"OFF"             
-            }
+          }
         standardTile("input4", "device.bd", width: 2, height: 2, decoration: "flat"){
         	state "OFF", label: 'LeapTV', action: "bd", icon:"st.Electronics.electronics5", backgroundColor: "#FFFFFF",nextState:"ON"  
             state "ON", label: 'LeapTV', action: "bd", icon:"st.Electronics.electronics5", backgroundColor: "#53a7c0", nextState:"OFF"              
-        	}
+          }
         standardTile("input5", "device.dvd", width: 2, height: 2, decoration: "flat"){
-        	state "OFF", label: 'Switch', action: "dvd", icon:"st.Electronics.electronics5", backgroundColor: "#FFFFFF",nextState:"ON"   
-            state "ON", label: 'Switch', action: "dvd", icon:"st.Electronics.electronics5", backgroundColor: "#53a7c0", nextState:"OFF"               
-        	}
+        	state "OFF", label: 'NSwitch', action: "dvd", icon:"st.Electronics.electronics5", backgroundColor: "#FFFFFF",nextState:"ON"   
+            state "ON", label: 'NSwitch', action: "dvd", icon:"st.Electronics.electronics5", backgroundColor: "#53a7c0", nextState:"OFF"               
+          }
         standardTile("input6", "device.game", width: 2, height: 2, decoration: "flat"){
         	state "OFF", label: 'WiiU', action: "game", icon:"st.Electronics.electronics5", backgroundColor: "#FFFFFF",nextState:"ON"   
             state "ON", label: 'WiiU', action: "game", icon:"st.Electronics.electronics5", backgroundColor: "#53a7c0", nextState:"OFF"   
-			}
+		  }
         standardTile("input7", "device.cd", width: 2, height: 2, decoration: "flat"){
         	state "OFF", label: 'Chromecast', action: "cd", icon:"st.Entertainment.entertainment2", backgroundColor: "#FFFFFF",nextState:"ON"   
             state "ON", label: 'Chromecast', action: "cd", icon:"st.Entertainment.entertainment2", backgroundColor: "#53a7c0", nextState:"OFF"             
-			}
+		  }
 		standardTile("poll", "device.poll", width: 2, height: 2, decoration: "flat") {
             state "poll", label: "", action: "polling.poll", icon: "st.secondary.refresh", backgroundColor: "#FFFFFF"
-        }
+          }
         main "multiAVR"
         details(["multiAVR", "input1", "input2", "input3","input4", "input5", "input6","input7","poll"])
     }
-}
+  }
 def parse(String description) {
 	//log.debug "Parsing '${description}'"
  	def map = stringToMap(description)
